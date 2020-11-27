@@ -1,0 +1,25 @@
+<mat-accordion class="example-headers-align" multi>
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          Add Student
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+  
+      <form class="form" [formGroup]="addStudentForm" (ngSubmit)="addStudent(addStudentForm.value)">
+        <mat-form-field class="form-field" appearance="outline" 
+                        *ngFor="let field of addStudentFields; index as i;">
+          <mat-label>{{field}}</mat-label>
+          <input matInput formControlName="{{field}}" placeholder="{{field}}" #{{field}} required ngModel maxlength="250">
+        </mat-form-field>
+  
+        <mat-form-field appearance="outline">
+          <mat-label>Grade</mat-label>
+          <input matInput formControlName="grade" type="number" min="1" max="12" #grade required>
+        </mat-form-field>
+        <p></p>
+        <button mat-stroked-button color="accent" type="submit">Save</button>
+      </form>
+    </mat-expansion-panel>
+  </mat-accordion>
+  

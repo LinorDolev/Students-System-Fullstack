@@ -1,0 +1,63 @@
+<div class="background">
+  <app-add-student-form [renderStudents]="renderStudents.bind(this)"></app-add-student-form>
+  <br width={3} />
+  <mat-form-field class="filter-field" color="accent" appearance="outline">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Search Student" #input>
+  </mat-form-field>
+  <br width={3} />
+
+  <div class="mat-elevation-z8" (click)="addStudentFormComponent?.closeAccordion()">
+    <table class="table" mat-table matSort [dataSource]="dataSource">
+      <ng-container *ngFor="let column of displayedColumns; index as i;" matColumnDef="{{column}}">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> {{headers[i]}} </th>
+        <td mat-cell *matCellDef="let student">
+          <mat-form-field class="edited-field" *ngIf="editedStudent && student === editedStudent; else notEdited">
+            <input matInput [value]="editedStudent[column]" (keyup)="updateStudentField($event)" maxlength="250"
+              required type="{{column === 'grade' ? 'number' : 'text'}}" min="1" max="12" name="{{column}}"
+              (change)="updateStudentField($event)">
+          </mat-form-field>
+          <ng-template #notEdited>
+            {{student[column]}}
+          </ng-template>
+        </td>
+      </ng-container>
+
+      <!-- update column -->
+      <ng-container matColumnDef="edit">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Edit </th>
+        <td mat-cell *matCellDef="let student">
+          <mat-icon class="entry-icon" (click)="editStudent(student)" aria-hidden="false" aria-label="edit icon"
+            color='{{editedStudent && student === editedStudent ? "accent": "default"}}'>
+            edit</mat-icon>
+        </td>
+      </ng-container>
+
+      <!-- delete column -->
+      <ng-container matColumnDef="delete">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Delete </th>
+        <td mat-cell *matCellDef="let student">
+          <mat-icon class="entry-icon" aria-hidden="false" aria-label="delete icon" (click)="openDialog(student)">
+            delete
+          </mat-icon>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="allColumns;  sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: allColumns;"></tr>
+
+      <!-- Row shown when there is no matching students. -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">There's no student named "{{input.value}}"</td>
+      </tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+  <br />
+
+  <div class="button-container entry-icon">
+    <button mat-fab mat-button color="accent" disabled="{{shouldDisableButton()}}"
+      (click)="onSaveStudentUpdate()">Save</button>
+  </div>
+</div>

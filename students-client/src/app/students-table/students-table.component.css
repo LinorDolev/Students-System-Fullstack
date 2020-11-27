@@ -1,0 +1,53 @@
+table {
+  width: 100%;
+  overflow: scroll;
+  max-height: 60vh;
+  max-width: 100%;
+}
+
+mat-form-field.edited-field {
+  max-width: 100px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: right;
+  width: 100%;
+  flex-direction: row-reverse;
+}
+
+.entry-icon:hover {
+  cursor: pointer;
+  text-shadow: 0px 0px 5px rgb(218, 145, 236);
+  enable-background: accumulate;
+}
+
+.filter-field {
+  font-size: 14px;
+  width: 100%;
+  color: white;
+}
+
+/* slightly transparent fallback */
+.background {
+  background-color: rgba(0, 0, 0, 0.2);
+  padding: 3%;
+  border-radius: 2rem;
+}
+
+/* if backdrop support: very transparent and blurred */
+@supports ((-webkit-backdrop-filter: blur(3px)) or (backdrop-filter: blur(3px))) {
+  .filter-field {
+    font-size: 14px;
+    width: 100%;
+    color: white;
+  }
+
+  .background {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 3%;
+    border-radius: 2rem;
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+  }
+}
