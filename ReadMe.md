@@ -16,7 +16,7 @@
   this can be replaced to a real DB in no time thanks to spring-data (only need to change some annotations and application.properties file).
    
 ### Front-End Client
-  Deveolped using Angular 11, Typescript, and (Angular Material 11)[https://material.angular.io/] which provides material design components for Angular.
+  Deveolped using Angular 11, Typescript, and [Angular Material 11](https://material.angular.io/) which provides material design components for Angular.
   The app contains 3 main components and a service for http requests.
   
   #### Add Student Form Component
