@@ -66,6 +66,7 @@
 ## Tests
   The server side was quickly developed so tests were done "by hand" using Postman.
   The client side was also been tested by hand but for scalability tests I've used for-loops filling the table with over 100 students checking that the pagination, sorting and filtering are working properly.
+  The client was tested for chrome and firefox browsers.
 
   I can add automatic tests for both server and client if required. 
 
